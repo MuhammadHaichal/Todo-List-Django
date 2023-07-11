@@ -1,0 +1,3 @@
+# setup git
+.env
+db.sqlite3

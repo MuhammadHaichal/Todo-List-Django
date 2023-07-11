@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> TodoList </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mystyles -->
+  {% include 'snippets/styles.html' %}
+</head>
+
+<body>
+
+  <!-- navbar start -->
+  <nav class="navbar navbar-dark bg-dark my-5fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <div class="container">
+          <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600;" class="display-5 text-center">Todo List</h3>
+        </div>
+      </a>
+    </div>
+  </nav>
+  <!-- navbar end -->
+
+
+
+  <!-- form add taks -->
+
+  <form class="container mt-5" method="POST">
+    {% csrf_token %}
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <input type="text" required class="form-control" name="add" placeholder="Add new taks...." aria-label="Add taks">
+      </div>
+
+      <div class="col-auto">
+        <button class="btn btn-primary" type="submit">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+  <section class="container mt-5">
+    {% for items in context.datalist %}
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 style="font-family: 'Poppins', sans-serif; font-weight:300 ;">{{ items.judulTodo }}</h2>
+
+      <a class="nav-link" href="remove/{{items.id}}">
+        <i class="bi bi-trash mx-1 display-6"></i>
+      </a>
+    </div>
+    <hr>
+    {% endfor %}
+    <div class="col-12 mt-5">
+      <a href="clear/" class="nav-link text-end">
+        <p class="btn btn-danger">clear</p>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- myscript -->
+  {% include 'snippets/script.html' %}
+</body>
+
+</html>
